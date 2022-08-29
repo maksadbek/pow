@@ -5,7 +5,7 @@ type Pow interface {
 	Verify(string) bool
 
 	// Generate creates a new token putting the given resource into it.
-	Generate(string) []byte
+	Generate(string) string
 
 	// Parse should unpack the token and return payload.
 	Parse(string) []string

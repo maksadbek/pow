@@ -33,7 +33,7 @@ const (
 
 	validationPeriod = time.Hour * 48
 
-	timeFormat = "20160102"
+	timeFormat = "2006-01-02"
 )
 
 type Hashcash struct {
@@ -68,7 +68,6 @@ func (h *Hashcash) Verify(payload string) bool {
 	}
 
 	dateBase64 := chunks[3]
-	// resource := chunks[3]
 
 	date, err := base64.StdEncoding.DecodeString(dateBase64)
 	if err != nil {
@@ -81,7 +80,6 @@ func (h *Hashcash) Verify(payload string) bool {
 	}
 
 	if t.Before(h.timeFunc().Add(-validationPeriod)) {
-		println("dang")
 		return false
 	}
 
@@ -92,7 +90,7 @@ func (h *Hashcash) Verify(payload string) bool {
 	return hash[:5] != "00000"
 }
 
-func (h *Hashcash) Generate(resource, ext string) string {
+func (h *Hashcash) Generate(resource string) string {
 	return h.generate(resource, "")
 }
 

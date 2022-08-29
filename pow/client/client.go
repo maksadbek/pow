@@ -15,5 +15,5 @@ func NewClient(pow pow.Pow) *Client {
 }
 
 func (c *Client) Generate(id string) string {
-	return c.pow.Generate(id)
+	return string(c.pow.Generate(id))
 }
